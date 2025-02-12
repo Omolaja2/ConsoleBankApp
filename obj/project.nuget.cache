@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "o7JnSaE1IO8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\USER\\Desktop\\MySimpleBankSystem\\MySimpleBankSystem.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\consoletables\\2.6.2\\consoletables.2.6.2.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\wcwidth\\1.0.0\\wcwidth.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
