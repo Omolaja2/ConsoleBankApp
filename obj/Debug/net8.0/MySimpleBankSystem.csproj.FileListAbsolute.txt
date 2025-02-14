@@ -16,3 +16,4 @@ C:\Users\USER\desktop\MySimpleBankSystem\bin\Debug\net8.0\ConsoleTables.dll
 C:\Users\USER\desktop\MySimpleBankSystem\bin\Debug\net8.0\Wcwidth.dll
 C:\Users\USER\desktop\MySimpleBankSystem\obj\Debug\net8.0\MySimpleBankSystem.csproj.AssemblyReference.cache
 C:\Users\USER\desktop\MySimpleBankSystem\obj\Debug\net8.0\MySimple.A22E82E4.Up2Date
+C:\Users\USER\Desktop\MySimpleBankSystem\obj\Debug\net8.0\MySimpleBankSystem.sourcelink.json

@@ -18,7 +18,7 @@ namespace MySimpleBankSystem
 
         public void CreatAccount()
         {
-            Console.Write("Creat Acc Name: ");
+            Console.Write("Creat New Acount  Name: ");
             string username = Console.ReadLine() ?? string.Empty;
             if (string.IsNullOrEmpty(username))
             {
@@ -28,16 +28,22 @@ namespace MySimpleBankSystem
                 return;
             }
 
-            Console.Write("Enter PhoneNumber: ");
+            Console.Write("Enter New PhoneNumber: ");
             string phoneNumber = Console.ReadLine()! ?? string.Empty;
             if (!ValidatePhoneNumber(phoneNumber))
             {
                 return;
             }
+            Console.Write("Creat New Password (must be 6 characters): ");
+            string password = Console.ReadLine() ?? string.Empty;
+            if (!ValidatePassword(password))
+            {
+                return;
+            }
 
-            Console.Write("Create Your 4 Digit Pin (numeric): ");
+            Console.Write("Create Your 4-Digit Pin (numeric): ");
             string pinInput = ReadPassword();
-            if (!ValidatePassword(pinInput))
+            if (!ValidatePin(pinInput))
             {
                 return;
             }
@@ -46,12 +52,13 @@ namespace MySimpleBankSystem
             {
                 Username = username,
                 PhoneNumber = phoneNumber,
+                Password = password,
                 Pin = pinInput,
                 Balance = 0.00M,
                 CreatedAt = DateTime.Now
             };
             bankSytems.Add(account);
-            Console.WriteLine(" ");
+            Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Account Created Successfully");
             Console.ResetColor();
@@ -125,34 +132,27 @@ namespace MySimpleBankSystem
             }
         }
 
-        static bool ValidatePhoneNumber(string phoneNumber)
+    
+       static bool ValidatePassword(string password)
+    {
+        string namePattern = @"^[a-zA-Z@]+(?: [a-zA-Z@]+)*$";
+
+        if (!Regex.IsMatch(password, namePattern))
         {
-            string phoneNumberPattern = @"^\d+$";
-
-            if (!Regex.IsMatch(phoneNumber, phoneNumberPattern))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("An Error Occured !! Phone Number Cannot Contain Special Characters!");
-                Console.ResetColor();
-                Console.WriteLine("-----------------------------------------------------------");
-                Console.WriteLine("-----------------------------------------------------------");
-                return false;
-            }
-
-            if (phoneNumber.Length != 11)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Oops Phone number must be exactly 11 digits.");
-                Console.ResetColor();
-                Console.WriteLine("-----------------------------------------------------------");
-                Console.WriteLine("-----------------------------------------------------------");
-
-                return false;
-            }
-
-            return true;
+            Console.WriteLine("Password  cannot contain special characters except single whitespace between each interval of word or character and @ character!");
+            return false;
+            
         }
-        static bool ValidatePassword(string pinInput)
+
+        if (password.Length != 8)
+        {
+            throw new Exception("Password must be at least Eight characters.");
+        }
+        return true;
+    }
+            
+        
+          static bool ValidatePin(string pinInput)
         {
             string passwordPattern = @"^\d+$";
             if (!Regex.IsMatch(pinInput, passwordPattern))
@@ -175,17 +175,44 @@ namespace MySimpleBankSystem
                 return false;
             }
             return true;
+            
         }
+         static bool ValidatePhoneNumber(string phoneNumber)
+        {
+            string passwordPattern = @"^\d+$";
+            if (!Regex.IsMatch(phoneNumber, passwordPattern))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Cannot Contain Special Characters!");
+                Console.ResetColor();
+                Console.WriteLine("-----------------------------------------------------------");
+                Console.WriteLine("-----------------------------------------------------------");
+                return false;
+            }
+
+            if (phoneNumber.Length != 11)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Your Phone Number  Must Be Atleast Eleven Digits");
+                Console.ResetColor();
+                Console.WriteLine("-----------------------------------------------------------");
+                Console.WriteLine("-----------------------------------------------------------");
+                return false;
+            }
+            return true;
+            
+        }
+
 
         public void ViewAllAccounts()
         {
-            var consoleTable = new ConsoleTable("Username", "PIn", "PhoneNumber", "Balance", "CreatedAt");
+            var consoleTable = new ConsoleTable("Username", "PIn", "PhoneNumber","Password", "Balance", "CreatedAt");
 
             foreach (var account in bankSytems)
             {
                 string maskedPin = "****";
 
-                consoleTable.AddRow(account.Username, maskedPin, account.PhoneNumber, account.Balance, account.CreatedAt);
+                consoleTable.AddRow(account.Username, maskedPin, account.PhoneNumber,account.Password, account.Balance, account.CreatedAt);
             }
 
             Console.WriteLine(consoleTable.ToString());
