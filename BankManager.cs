@@ -34,7 +34,7 @@ namespace MySimpleBankSystem
             {
                 return;
             }
-            Console.Write("Creat New Password (must be 6 characters): ");
+            Console.Write("Creat New Password (must be 8 characters):");
             string password = Console.ReadLine() ?? string.Empty;
             if (!ValidatePassword(password))
             {
