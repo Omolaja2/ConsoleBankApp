@@ -15,7 +15,7 @@ namespace MySimpleBankSystem
         public DateTime CreatedAt { get; set; }
         public override string ToString()
         {
-            return $"Accout Name: {Username}|| Pin: {Pin} || PhoneNumber: {PhoneNumber} || Password: ******** || Balance: {Balance} || {CreatedAt}";
+            return $"Accout Name: {Username}|| PhoneNumber: {PhoneNumber} || Password: ******** || Pin: {Pin} || CreatedAt: {CreatedAt}";
 
         }
     }

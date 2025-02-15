@@ -54,7 +54,7 @@ namespace MySimpleBankSystem
                 PhoneNumber = phoneNumber,
                 Password = password,
                 Pin = pinInput,
-                Balance = 0.00M,
+                Balance = bankSytem.Balance,
                 CreatedAt = DateTime.Now
             };
             bankSytems.Add(account);
@@ -135,7 +135,7 @@ namespace MySimpleBankSystem
     
        static bool ValidatePassword(string password)
     {
-        string namePattern = @"^[a-zA-Z@]+(?: [a-zA-Z@]+)*$";
+        string namePattern = @"^[a-zA-Z@0-9]+(?: [a-zA-Z@0-9]+)*$";
 
         if (!Regex.IsMatch(password, namePattern))
         {
@@ -206,13 +206,13 @@ namespace MySimpleBankSystem
 
         public void ViewAllAccounts()
         {
-            var consoleTable = new ConsoleTable("Username", "PIn", "PhoneNumber","Password", "Balance", "CreatedAt");
+            var consoleTable = new ConsoleTable("Username", "PhoneNumber","Password","PIn", "CreatedAt");
 
             foreach (var account in bankSytems)
             {
-                string maskedPin = "****";
+                string displayPin = "****";
 
-                consoleTable.AddRow(account.Username, maskedPin, account.PhoneNumber,account.Password, account.Balance, account.CreatedAt);
+                consoleTable.AddRow(account.Username, account.PhoneNumber,account.Password,displayPin,account.CreatedAt);
             }
 
             Console.WriteLine(consoleTable.ToString());
